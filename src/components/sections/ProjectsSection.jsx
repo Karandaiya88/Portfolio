@@ -1,56 +1,73 @@
 import { useRef } from 'react'
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ExternalLink, ChevronRight } from 'lucide-react'
+import { ExternalLink, ChevronRight, Lock } from 'lucide-react'
 import { GitHubIcon } from '../ui/SocialIcons'
 
 const projects = [
   {
     id: 1,
-    title: 'TalentTrail',
-    subtitle: 'AI-Powered Career Platform',
+    title: 'CRPF Tender Evaluator',
+    subtitle: 'AI-Powered Government Procurement',
     description:
-      'An intelligent career guidance platform that uses agentic AI to create personalized learning paths, skill assessments, and job matching for aspiring tech professionals.',
-    tags: ['Spring Boot', 'React', 'AI/ML', 'MySQL', 'LangChain'],
+      'An intelligent AI system for CRPF tender evaluation — extracts eligibility criteria via GPT-4, evaluates bidder documents through an OCR + RAG pipeline, and generates tamper-evident audit reports with human-in-the-loop review.',
+    tags: ['FastAPI', 'GPT-4', 'Python', 'PostgreSQL', 'AWS S3', 'Docker'],
     color: '#00F5FF',
-    github: '#',
-    live: '#',
+    github: 'https://github.com/Karandaiya88/CRPF-Tender-',
+    live: 'https://github.com/Karandaiya88/CRPF-Tender-',
     gradient: 'linear-gradient(135deg, #00F5FF15, #7000FF10)',
+    isPrivate: false,
   },
   {
     id: 2,
-    title: 'Gesture Tool',
-    subtitle: 'Computer Vision Interface',
+    title: 'Jira Ticket Evaluator',
+    subtitle: 'AI Developer Productivity Tool',
     description:
-      'A real-time hand gesture recognition system built with computer vision and deep learning, enabling touchless interaction with digital interfaces using custom-trained neural networks.',
-    tags: ['Python', 'TensorFlow', 'OpenCV', 'MediaPipe', 'CNN'],
+      'An AI-powered tool that evaluates Jira tickets for clarity, completeness, and actionability — helping engineering teams write better tickets and reduce back-and-forth in sprint planning.',
+    tags: ['Python', 'LLM', 'Prompt Engineering', 'Jira API'],
     color: '#7000FF',
-    github: '#',
-    live: '#',
+    github: 'https://github.com/Karandaiya88/jira-ticket-evaluator',
+    live: 'https://github.com/Karandaiya88/jira-ticket-evaluator',
     gradient: 'linear-gradient(135deg, #7000FF15, #00F5FF10)',
+    isPrivate: false,
   },
   {
     id: 3,
-    title: 'Agentic RAG System',
-    subtitle: 'Autonomous Knowledge Engine',
+    title: 'Interactive CPU Scheduler',
+    subtitle: 'OS Algorithm Visualizer',
     description:
-      'A multi-agent retrieval-augmented generation system that autonomously researches, synthesizes, and presents information from diverse data sources with intelligent query decomposition.',
-    tags: ['LangChain', 'Python', 'Vector DB', 'GPT-4', 'FastAPI'],
+      'A real-time interactive simulator that visualizes CPU scheduling algorithms — FCFS, SJF, Priority, and Round Robin — with live Gantt charts, waiting time stats, and process management for OS learners.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Algorithms', 'Data Structures'],
+    color: '#00F5FF',
+    github: 'https://github.com/Karandaiya88/Interactive-CPU-Scheduling',
+    live: 'https://karandaiya88.github.io/Interactive-CPU-Scheduling/',
+    gradient: 'linear-gradient(135deg, #00F5FF15, #7000FF10)',
+    isPrivate: false,
+  },
+  {
+    id: 4,
+    title: 'Weather App',
+    subtitle: 'Real-Time Weather Dashboard',
+    description:
+      'A clean, responsive weather application that fetches real-time weather data using a public API — displaying temperature, humidity, wind speed, and condition icons for any searched city worldwide.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Weather API', 'REST'],
+    color: '#7000FF',
+    github: 'https://github.com/Karandaiya88/Weather-App',
+    live: 'https://github.com/Karandaiya88/Weather-App',
+    gradient: 'linear-gradient(135deg, #7000FF15, #00F5FF10)',
+    isPrivate: false,
+  },
+  {
+    id: 5,
+    title: 'Internship Portal',
+    subtitle: 'Full-Stack Career Platform',
+    description:
+      'A comprehensive internship management platform connecting students with companies — featuring role-based access, application tracking, profile management, and admin dashboards built with Spring Boot & React.',
+    tags: ['Spring Boot', 'React', 'MySQL', 'Java', 'REST APIs'],
     color: '#00F5FF',
     github: '#',
     live: '#',
     gradient: 'linear-gradient(135deg, #00F5FF15, #7000FF10)',
-  },
-  {
-    id: 4,
-    title: 'Smart API Gateway',
-    subtitle: 'Microservices Architecture',
-    description:
-      'A production-grade API gateway with intelligent rate limiting, JWT-based auth, request routing, and real-time analytics dashboard for monitoring microservice health.',
-    tags: ['Spring Boot', 'Java', 'Docker', 'Redis', 'Kafka'],
-    color: '#7000FF',
-    github: '#',
-    live: '#',
-    gradient: 'linear-gradient(135deg, #7000FF15, #00F5FF10)',
+    isPrivate: true,
   },
 ]
 
@@ -82,7 +99,7 @@ function ProjectCard({ project, index }) {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
       style={{
         rotateX,
         rotateY,
@@ -98,13 +115,29 @@ function ProjectCard({ project, index }) {
         className="h-48 md:h-56 relative overflow-hidden"
         style={{ background: project.gradient }}
       >
-        {/* Decorative elements */}
+        {/* Decorative glow */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="w-24 h-24 rounded-full blur-2xl opacity-40"
             style={{ background: project.color }}
           />
         </div>
+
+        {/* Private badge */}
+        {project.isPrivate && (
+          <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider"
+            style={{
+              background: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(8px)',
+              color: '#888',
+              border: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <Lock size={10} />
+            Private Repo
+          </div>
+        )}
+
         <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between">
           <span
             className="text-xs font-mono tracking-wider uppercase opacity-60"
@@ -113,32 +146,40 @@ function ProjectCard({ project, index }) {
             Project 0{project.id}
           </span>
           <div className="flex gap-2">
-            <a
-              href={project.github}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              style={{
-                background: 'rgba(0,0,0,0.4)',
-                backdropFilter: 'blur(8px)',
-                color: '#fff',
-              }}
-              data-cursor="pointer"
-              aria-label={`${project.title} GitHub`}
-            >
-              <GitHubIcon size={14} />
-            </a>
-            <a
-              href={project.live}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              style={{
-                background: 'rgba(0,0,0,0.4)',
-                backdropFilter: 'blur(8px)',
-                color: '#fff',
-              }}
-              data-cursor="pointer"
-              aria-label={`${project.title} Live`}
-            >
-              <ExternalLink size={14} />
-            </a>
+            {!project.isPrivate && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                style={{
+                  background: 'rgba(0,0,0,0.4)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#fff',
+                }}
+                data-cursor="pointer"
+                aria-label={`${project.title} GitHub`}
+              >
+                <GitHubIcon size={14} />
+              </a>
+            )}
+            {!project.isPrivate && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                style={{
+                  background: 'rgba(0,0,0,0.4)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#fff',
+                }}
+                data-cursor="pointer"
+                aria-label={`${project.title} Live`}
+              >
+                <ExternalLink size={14} />
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -172,15 +213,23 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        {/* View more */}
-        <a
-          href={project.live}
-          className="inline-flex items-center gap-1 text-xs font-medium transition-all duration-300 group-hover:gap-2"
-          style={{ color: project.color }}
-          data-cursor="pointer"
-        >
-          View Details <ChevronRight size={14} />
-        </a>
+        {/* View link or private label */}
+        {project.isPrivate ? (
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#444]">
+            <Lock size={12} /> Private Repository
+          </span>
+        ) : (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-medium transition-all duration-300 group-hover:gap-2"
+            style={{ color: project.color }}
+            data-cursor="pointer"
+          >
+            View on GitHub <ChevronRight size={14} />
+          </a>
+        )}
       </div>
     </motion.div>
   )
@@ -211,12 +260,31 @@ export default function ProjectsSection() {
           <div className="w-16 h-0.5 bg-gradient-to-r from-[#00F5FF] to-[#7000FF] mt-6 rounded-full" />
         </motion.div>
 
-        {/* Project grid */}
+        {/* Project grid — 2 cols on md+, 1 col on mobile */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
+
+        {/* GitHub CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="mt-12 text-center"
+        >
+          <a
+            href="https://github.com/Karandaiya88"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline inline-flex"
+            data-cursor="pointer"
+          >
+            <GitHubIcon size={16} />
+            View All on GitHub
+          </a>
+        </motion.div>
       </div>
     </section>
   )

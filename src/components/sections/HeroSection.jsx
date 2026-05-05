@@ -109,16 +109,24 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
+          {/* Name */}
+          <motion.p variants={itemVariants} className="text-sm font-medium text-[#555] mb-2 tracking-[0.2em] uppercase">
+            Hi, I'm
+          </motion.p>
+
           {/* Title */}
-          <motion.h1 variants={itemVariants} className="hero-title mb-6">
+          <motion.h1 variants={itemVariants} className="hero-title mb-2">
+            Karan Daiya
+          </motion.h1>
+          <motion.h2 variants={itemVariants} className="hero-title mb-6 !text-3xl md:!text-4xl">
             Building the Future
             <br />
             <span className="text-gradient">with Agentic AI</span>
-          </motion.h1>
+          </motion.h2>
 
           {/* Subtitle */}
           <motion.p variants={itemVariants} className="hero-subtitle mb-10">
-            B.Tech Graduate turned AI/ML & Backend Specialist. I craft intelligent systems
+            B.Tech CS Graduate turned AI/ML & Backend Specialist. I craft intelligent systems
             powered by Agentic AI, Spring Boot, and cutting-edge machine learning —
             transforming ideas into autonomous, scalable solutions.
           </motion.p>
@@ -140,12 +148,14 @@ export default function HeroSection() {
             <div className="w-6 sm:w-8 h-px bg-[#333]" />
             <div className="flex gap-3">
               {[
-                { icon: GitHubIcon, href: '#', label: 'GitHub' },
+                { icon: GitHubIcon, href: 'https://github.com/Karandaiya88', label: 'GitHub' },
                 { icon: LinkedinIcon, href: '#', label: 'LinkedIn' },
               ].map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[rgba(0,245,255,0.08)] hover:text-[#00F5FF]"
                   style={{ border: '1px solid rgba(255,255,255,0.06)', color: '#888' }}
                   data-cursor="pointer"
